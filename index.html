@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบสารบัญ</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function updateDateTime() {
+            const options = { timeZone: 'Asia/Bangkok', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const dateTime = new Date().toLocaleString('th-TH', options);
+            document.getElementById('datetime').innerText = dateTime;
+        }
+        setInterval(updateDateTime, 1000);
+    </script>
 </head>
 <body>
     <!-- Navigation Menu -->
@@ -33,6 +41,7 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 ระบบสารบัญ. สงวนลิขสิทธิ์.</p>
+        <div id="datetime"></div> <!-- Div for displaying date and time -->
     </footer>
 </body>
 </html>
