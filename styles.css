@@ -42,6 +42,11 @@ nav ul li a:hover {
 /* Main Content Styling */
 main {
     text-align: left;
+    background-image: url('https://drive.google.com/uc?export=view&id=1JjbkIfsyu8zZuciNTw1TSMbS-EOcP9uj');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    color: black; /* Adjust text color if needed */
 }
 
 /* Footer Styling */
