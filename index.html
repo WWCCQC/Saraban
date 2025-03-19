@@ -12,6 +12,17 @@
             document.getElementById('datetime').innerText = dateTime;
         }
         setInterval(updateDateTime, 1000);
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'admin' && password === 'adminadmin') {
+                alert('Login successful!');
+                // Redirect to another page or perform other actions
+            } else {
+                alert('Invalid username or password');
+            }
+        }
     </script>
 </head>
 <body>
@@ -37,6 +48,16 @@
             <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรช่าง(ใช้งานได้)</a></li>
             <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรประชาชนช่างจากการเเจ้ง GEN ID(ใช้งานได้)</a></li>
         </ul>
+
+        <!-- Login Form -->
+        <h2>Login</h2>
+        <form onsubmit="event.preventDefault(); login();">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
     </main>
 
     <!-- Footer -->
