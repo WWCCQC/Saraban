@@ -18,12 +18,18 @@
             const password = document.getElementById('password').value;
             if (username === 'admin' && password === 'adminadmin') {
                 alert('Login successful!');
-                // Redirect to another page or perform other actions
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
             } else {
                 alert('Invalid username or password');
             }
         }
     </script>
+    <style>
+        #main-content {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Menu -->
@@ -39,17 +45,8 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
-    <main>
-        <h1>ยินดีต้อนรับสู่หน้าแรก</h1>
-        <p>นี่คือหน้าแรกของเว็บไซต์ระบบสารบัญ</p>
-        <ul>
-            <li><a href="https://script.google.com/macros/s/AKfycbw40cGA78Q5IMcR2U49kU2rU9bQBdW48pif5bxjRmdLQ_OAF8tJuQcG1ZnBPQ6jIlIQSA/exec" target="_blank">การอบรมช่างใหม่-ช่างต่อบัตร(อยู่ระหว่างพัฒนา)</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรช่าง(ใช้งานได้)</a></li>
-            <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรประชาชนช่างจากการเเจ้ง GEN ID(ใช้งานได้)</a></li>
-        </ul>
-
-        <!-- Login Form -->
+    <!-- Login Form -->
+    <div id="login-form">
         <h2>Login</h2>
         <form onsubmit="event.preventDefault(); login();">
             <label for="username">Username:</label>
@@ -58,7 +55,20 @@
             <input type="password" id="password" name="password" required><br><br>
             <button type="submit">Login</button>
         </form>
-    </main>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <main>
+            <h1>ยินดีต้อนรับสู่หน้าแรก</h1>
+            <p>นี่คือหน้าแรกของเว็บไซต์ระบบสารบัญ</p>
+            <ul>
+                <li><a href="https://script.google.com/macros/s/AKfycbw40cGA78Q5IMcR2U49kU2rU9bQBdW48pif5bxjRmdLQ_OAF8tJuQcG1ZnBPQ6jIlIQSA/exec" target="_blank">การอบรมช่างใหม่-ช่างต่อบัตร(อยู่ระหว่างพัฒนา)</a></li>
+                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรช่าง(ใช้งานได้)</a></li>
+                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรประชาชนช่างจากการเเจ้ง GEN ID(ใช้งานได้)</a></li>
+            </ul>
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer>
