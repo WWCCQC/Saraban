@@ -6,33 +6,80 @@
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1); /* เปลี่ยนพื้นหลังเป็น Gradient */
+            background-size: cover;
+            background-position: center;
+        }
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: #f4f4f4;
+            background-color: rgba(255, 255, 255, 0.8); /* สีพื้นหลังโปร่งใส */
             border-bottom: 1px solid #ccc;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
         nav h1 {
             margin: 0;
+            font-size: 1.5em;
         }
-        nav .datetime {
-            font-size: 0.9em;
-            color: #555;
+        .datetime {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            font-size: 1em;
+            font-weight: bold; /* ตัวหนังสือหนา */
+            color: #000; /* ตัวหนังสือสีดำ */
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            text-align: center;
-            border-top: 1px solid #ccc;
-            background-color: #f4f4f4;
+        main {
+            padding: 80px 20px 20px; /* เพิ่ม padding-top เพื่อไม่ให้เนื้อหาทับกับ Nav Bar */
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
         }
-        footer .footer-box {
-            display: inline-block;
-            padding: 10px;
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
-            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            background-color: blue;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        .card ul li {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+        .card ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+        .card ul li a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -40,7 +87,6 @@
     <script>
         // ตรวจสอบสถานะการล็อกอิน
         if (sessionStorage.getItem('isLoggedIn') !== 'true') {
-            // ถ้าไม่ได้ล็อกอิน ให้เปลี่ยนเส้นทางกลับไปยังหน้า Login
             window.location.href = "index.html";
         }
 
@@ -51,21 +97,36 @@
             datetimeElement.textContent = now.toLocaleString();
         }
 
-        // อัปเดตวันที่และเวลาเมื่อโหลดหน้า
-        window.onload = updateDateTime;
+        // อัปเดตวันที่และเวลาแบบเรียลไทม์ทุกวินาที
+        setInterval(updateDateTime, 1000);
     </script>
 
     <nav>
-        <h1>ระบบสาระบัญ</h1>
-        <div class="datetime"></div>
+        <h1>เมนูการใช้งาน</h1>
     </nav>
     <main>
-        <p>ยินดีต้อนรับสู่ระบบสาระบัญ!</p>
-    </main>
-    <footer>
-        <div class="footer-box">
-            Dev. by Pathom Tel.xxxxxxxxxx
+        <div class="card">
+            <h2>TQC/TFC</h2>
+            <ul>
+                <li><a href="https://script.google.com/macros/s/AKfycbw40cGA78Q5IMcR2U49kU2rU9bQBdW48pif5bxjRmdLQ_OAF8tJuQcG1ZnBPQ6jIlIQSA/exec" target="_blank">- อบรมช่าง</a></li>
+                <li>- สถานะการอบรม</li>
+                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">- ค้นหารูปช่าง</a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="card">
+            <h2>TECH&CONFIG</h2>
+            <ul>
+                <li>- เรื่องที่ 1</li>
+                <li>- เรื่องที่ 2</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>PAYMENT</h2>
+            <ul>
+                <li>- เรื่องที่ 5</li>
+            </ul>
+        </div>
+    </main>
+    <div class="datetime"></div>
 </body>
 </html>
