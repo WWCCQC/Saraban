@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+            border-bottom: 1px solid #ccc;
+        }
+        nav h1 {
+            margin: 0;
+        }
+        nav .datetime {
+            font-size: 0.9em;
+            color: #555;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+            background-color: #f4f4f4;
+        }
+        footer .footer-box {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -13,13 +43,29 @@
             // ถ้าไม่ได้ล็อกอิน ให้เปลี่ยนเส้นทางกลับไปยังหน้า Login
             window.location.href = "index.html";
         }
+
+        // ฟังก์ชันแสดงวันที่และเวลา
+        function updateDateTime() {
+            const now = new Date();
+            const datetimeElement = document.querySelector('.datetime');
+            datetimeElement.textContent = now.toLocaleString();
+        }
+
+        // อัปเดตวันที่และเวลาเมื่อโหลดหน้า
+        window.onload = updateDateTime;
     </script>
 
-    <header>
-        <h1>ระบบสารบัญ</h1>
-    </header>
+    <nav>
+        <h1>ระบบสาระบัญ</h1>
+        <div class="datetime"></div>
+    </nav>
     <main>
-        <p>ยินดีต้อนรับสู่ระบบสารบัญ!</p>
+        <p>ยินดีต้อนรับสู่ระบบสาระบัญ!</p>
     </main>
+    <footer>
+        <div class="footer-box">
+            Dev. by Pathom Tel.xxxxxxxxxx
+        </div>
+    </footer>
 </body>
 </html>
