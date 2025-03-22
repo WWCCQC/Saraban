@@ -1,80 +1,51 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบสารบัญ</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        function updateDateTime() {
-            const options = { timeZone: 'Asia/Bangkok', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            const dateTime = new Date().toLocaleString('th-TH', options);
-            document.getElementById('datetime').innerText = dateTime;
-        }
-        setInterval(updateDateTime, 1000);
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50" alt="Logo"> <!-- แทนที่ด้วยโลโก้จริง -->
+            </div>
+            <h2>LOG IN</h2>
+            <form id="loginForm" onsubmit="validateLogin(event)">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+    </div>
 
-        function login() {
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // ป้องกันการส่งฟอร์มโดยอัตโนมัติ
+
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            if (username === 'admin' && password === 'adminadmin') {
-                alert('Login successful!');
-                document.getElementById('login-form').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                document.getElementById('nav-menu').style.display = 'block';
+
+            // ตรวจสอบ Username และ Password
+            if (username === "admin" && password === "adminadmin") {
+                // ถ้าถูกต้อง ให้ไปที่หน้า Home
+                window.location.href = "https://ptllerk.github.io/Saraban/";
             } else {
-                alert('Invalid username or password');
+                // ถ้าผิด ให้แสดงข้อความแจ้งเตือน
+                alert("Invalid Username or Password!");
             }
         }
     </script>
-    <style>
-        #main-content, #nav-menu {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navigation Menu -->
-    <nav id="nav-menu">
-        <ul>
-            <li><a href="index.html">หน้าแรก</a></li>
-            <li><a href="about.html">เกี่ยวกับ</a></li>
-            <li><a href="services.html">บริการ</a></li>
-            <li><a href="portfolio.html">ผลงาน</a></li>
-            <li><a href="team.html">ทีมงาน</a></li>
-            <li><a href="blog.html">บล็อก</a></li>
-            <li><a href="contact.html">ติดต่อ</a></li>
-        </ul>
-    </nav>
-
-    <!-- Login Form -->
-    <div id="login-form">
-        <h2>Login</h2>
-        <form onsubmit="event.preventDefault(); login();">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
-            <button type="submit">Login</button>
-        </form>
-    </div>
-
-    <!-- Main Content -->
-    <div id="main-content">
-        <main>
-            <h1>ยินดีต้อนรับสู่หน้าแรก</h1>
-            <p>นี่คือหน้าแรกของเว็บไซต์ระบบสารบัญ</p>
-            <ul>
-                <li><a href="https://script.google.com/macros/s/AKfycbw40cGA78Q5IMcR2U49kU2rU9bQBdW48pif5bxjRmdLQ_OAF8tJuQcG1ZnBPQ6jIlIQSA/exec" target="_blank">การอบรมช่างใหม่-ช่างต่อบัตร(อยู่ระหว่างพัฒนา)</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรช่าง(ใช้งานได้)</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ระบบค้นหาบัตรประชาชนช่างจากการเเจ้ง GEN ID(ใช้งานได้)</a></li>
-            </ul>
-        </main>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 ระบบสารบัญ. สงวนลิขสิทธิ์.</p>
-        <div id="datetime"></div> <!-- Div for displaying date and time -->
-    </footer>
 </body>
 </html>
