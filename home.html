@@ -57,6 +57,10 @@
             width: 300px;
             margin: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px; /* กำหนดความสูงขั้นต่ำ */
         }
         .card h2 {
             background-color: blue;
@@ -69,6 +73,7 @@
             list-style: none;
             padding: 0;
             margin: 10px 0 0 0;
+            flex-grow: 1; /* ให้รายการยืดหยุ่น */
         }
         .card ul li {
             margin: 5px 0;
@@ -109,7 +114,7 @@
             <h2>TQC/TFC</h2>
             <ul>
                 <li><a href="https://script.google.com/macros/s/AKfycbw40cGA78Q5IMcR2U49kU2rU9bQBdW48pif5bxjRmdLQ_OAF8tJuQcG1ZnBPQ6jIlIQSA/exec" target="_blank">- อบรมช่าง</a></li>
-                <li>- สถานะการอบรม</li>
+                <li><a href="https://ptllerk.github.io/SLATrainingDashboard/" target="_blank">- สถานะการอบรม</a></li>
                 <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">- ค้นหารูปช่าง</a></li>
             </ul>
         </div>
@@ -123,7 +128,8 @@
         <div class="card">
             <h2>PAYMENT</h2>
             <ul>
-                <li>- เรื่องที่ 5</li>
+                <li>- ค่าปรับนอก KPI</li>
+                <li>- ค่าปรับอุปกรณ์(CPE)</li>
             </ul>
         </div>
     </main>
