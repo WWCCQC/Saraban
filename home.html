@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // ตรวจสอบสถานะการล็อกอิน
+        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+            // ถ้าไม่ได้ล็อกอิน ให้เปลี่ยนเส้นทางกลับไปยังหน้า Login
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <header>
+        <h1>ระบบสารบัญ</h1>
+    </header>
+    <main>
+        <p>ยินดีต้อนรับสู่ระบบสารบัญ!</p>
+    </main>
+</body>
+</html>

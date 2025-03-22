@@ -39,8 +39,10 @@
 
             // ตรวจสอบ Username และ Password
             if (username === "admin" && password === "adminadmin") {
-                // ถ้าถูกต้อง ให้ไปที่หน้า Home
-                window.location.href = "https://ptllerk.github.io/Saraban/";
+                // บันทึกสถานะการล็อกอิน
+                sessionStorage.setItem('isLoggedIn', 'true');
+                // เปลี่ยนเส้นทางไปยังหน้า Home
+                window.location.href = "home.html";
             } else {
                 // ถ้าผิด ให้แสดงข้อความแจ้งเตือน
                 alert("Invalid Username or Password!");
