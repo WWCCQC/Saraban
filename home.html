@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             margin: 0;
@@ -149,45 +150,69 @@
         .card {
             background-color: rgba(255, 255, 255, 0.9);
             border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 20px;
-            width: 300px;
-            margin: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            margin: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 200px;
+            justify-content: flex-start;
+            height: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
         }
 
         .card h2 {
             background-color: blue;
             color: white;
-            padding: 5px;
+            padding: 15px;
             text-align: center;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-top: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
         }
 
         .card ul {
             list-style: none;
             padding: 0;
-            margin: 10px 0 0 0;
+            margin: 0;
             flex-grow: 1;
         }
 
         .card ul li {
-            margin: 5px 0;
-            font-size: 1em;
+            margin: 20px 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card ul li a {
             text-decoration: none;
             color: #000;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .card ul li a:hover {
-            text-decoration: underline;
+            color: blue;
+        }
+
+        .card i {
+            font-size: 20px;
+            color: blue;
         }
     </style>
 </head>
@@ -210,37 +235,24 @@
                     <li><a href="#">เรื่องที่ 2</a></li>
                 </ul>
             </li>
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link">PAYMENT</a>
-                <ul class="dropdown-menu">
-                    <li><a href="https://ptllerk.github.io/-KPI/" target="_blank">ค่าปรับนอก KPI</a></li>
-                    <li><a href="https://ptllerk.github.io/-CPE/" target="_blank">ค่าปรับอุปกรณ์(CPE)</a></li>
-                </ul>
-            </li>
         </ul>
     </nav>
 
     <main>
         <div class="card">
-            <h2>TQC/TFC</h2>
+            <h2><i class="fas fa-tools"></i> TQC/TFC</h2>
             <ul>
-                <li><a href="https://script.google.com/macros/s/AKfycbwstFfRSlgVSGa1PLJmZbpSSX91J0kkADXmExoaC-NTMyamhvqTg2flsNDAmmy0jfKIKg/exec" target="_blank">- อบรมช่าง</a></li>
-                <li><a href="https://ptllerk.github.io/SLATrainingDashboard/" target="_blank">- สถานะการอบรม(ใช้งานได้)</a></li>
-                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">- ค้นหารูปช่าง(ใช้งานได้)</a></li>
+                <li><a href="https://script.google.com/macros/s/AKfycbwstFfRSlgVSGa1PLJmZbpSSX91J0kkADXmExoaC-NTMyamhvqTg2flsNDAmmy0jfKIKg/exec" target="_blank"><i class="fas fa-user-cog"></i> อบรมช่าง</a></li>
+                <li><a href="https://ptllerk.github.io/SLATrainingDashboard/" target="_blank"><i class="fas fa-chart-line"></i> สถานะการอบรม(ใช้งานได้)</a></li>
+                <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank"><i class="fas fa-search"></i> ค้นหารูปช่าง(ใช้งานได้)</a></li>
+                <li><a href="https://ptllerk.github.io/TechAll/" target="_blank"><i class="fas fa-database"></i> ข้อมูลช่าง(ใช้งานได้)</a></li>
             </ul>
         </div>
         <div class="card">
-            <h2>TECH&CONFIG</h2>
+            <h2><i class="fas fa-cogs"></i> TECH&CONFIG</h2>
             <ul>
-                <li>- เรื่องที่ 1</li>
-                <li>- เรื่องที่ 2</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h2>PAYMENT</h2>
-            <ul>
-                <li><a href="https://ptllerk.github.io/-KPI/" target="_blank">- ค่าปรับนอก KPI(ใช้งานได้)</a></li>
-                <li><a href="https://ptllerk.github.io/-CPE/" target="_blank">- ค่าปรับอุปกรณ์(ใช้งานได้)</a></li>
+                <li><i class="fas fa-file-alt"></i> เรื่องที่ 1</li>
+                <li><i class="fas fa-file-alt"></i> เรื่องที่ 2</li>
             </ul>
         </div>
     </main>
