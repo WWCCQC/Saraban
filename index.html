@@ -224,14 +224,14 @@
                 <a href="#" class="nav-link">TQC/TFC</a>
                 <ul class="dropdown-menu">
                     <li><a href="https://script.google.com/macros/s/AKfycbwstFfRSlgVSGa1PLJmZbpSSX91J0kkADXmExoaC-NTMyamhvqTg2flsNDAmmy0jfKIKg/exec" target="_blank">อบรมช่างใหม่ /ต่ออายุบัตรช่าง(ทดสอบ Booking ผ่าน)</a></li>
-                    <li><a href="https://ptllerk.github.io/SLATrainingDashboard/" target="_blank">สถานะการอบรม</a></li>
+                    <li><a href="https://wwccqc.github.io/SLATrainingDashboard/" target="_blank">สถานะการอบรม</a></li>
                     <li><a href="https://script.google.com/macros/s/AKfycbyHPqYZvy-zKhQQRsxImox_ivYZv9bcVtUrqHasbVoXT3dVfdeErdOfuABNoM6SOct0kg/exec" target="_blank">ค้นหารูปช่าง</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link">TECH&CONFIG</a>
                 <ul class="dropdown-menu">
-                    <li><a href="https://wwccqc.github.io/checkin/" target="_blank">Web App ระบบเช็คอินช่าง (Test ผ่าน)</a></li>
+                    <li><a href="#">เรื่องที่ 1</a></li>
                     <li><a href="#">เรื่องที่ 2</a></li>
                 </ul>
             </li>
@@ -251,7 +251,7 @@
         <div class="card">
             <h2><i class="fas fa-cogs"></i> TECH&CONFIG</h2>
             <ul>
-                <li><a href="https://wwccqc.github.io/checkin/" target="_blank"><i class="fas fa-user-check"></i> Web App ระบบเช็คอินช่าง (Test ผ่าน)</a></li>
+                <li><i class="fas fa-file-alt"></i> เรื่องที่ 1</li>
                 <li><i class="fas fa-file-alt"></i> เรื่องที่ 2</li>
             </ul>
         </div>
@@ -260,11 +260,6 @@
     <div class="datetime"></div>
 
     <script>
-        // ตรวจสอบสถานะการล็อกอิน
-        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = "index.html";
-        }
-
         // ฟังก์ชันแสดงวันที่และเวลา
         function updateDateTime() {
             const now = new Date();
@@ -275,6 +270,11 @@
         // อัปเดตวันที่และเวลาแบบเรียลไทม์ทุกวินาที
         setInterval(updateDateTime, 1000);
         updateDateTime(); // เรียกใช้ฟังก์ชันครั้งแรกทันที
+
+        // ตรวจสอบสถานะการล็อกอิน
+        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = "index.html";
+        }
     </script>
 </body>
 </html>
