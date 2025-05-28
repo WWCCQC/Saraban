@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        #lightning-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -217,6 +227,7 @@
     </style>
 </head>
 <body>
+    <canvas id="lightning-canvas"></canvas>
     <nav>
         <h1>เมนูการใช้งาน</h1>
         <ul class="nav-menu">
@@ -232,7 +243,7 @@
                 <a href="#" class="nav-link">TECH&CONFIG</a>
                 <ul class="dropdown-menu">
                     <li><a href="https://image-scribe-thai-text.lovable.app/" target="_blank">ระบบ OCR-ดึงข้อความจากหน้าบัตรประชาชน (อยู่ระหว่างการพัฒนา)</a></li>
-                    <li><a href="#">เรื่องที่ 2</a></li>
+                    <li><a href="https://blackpar.onrender.com" target="_blank">Remain Capacity</a></li>
                 </ul>
             </li>
         </ul>
@@ -252,7 +263,7 @@
             <h2><i class="fas fa-cogs"></i> TECH&CONFIG</h2>
             <ul>
                 <li><a href="https://image-scribe-thai-text.lovable.app/" target="_blank"><i class="fas fa-file-alt"></i> ระบบ OCR-ดึงข้อความจากหน้าบัตรประชาชน (อยู่ระหว่างการพัฒนา)</a></li>
-                <li><i class="fas fa-file-alt"></i> เรื่องที่ 2</li>
+                <li><a href="https://blackpar.onrender.com" target="_blank"><i class="fas fa-file-alt"></i> Remain Capacity</a></li>
             </ul>
         </div>
     </main>
@@ -270,6 +281,90 @@
         // อัปเดตวันที่และเวลาแบบเรียลไทม์ทุกวินาที
         setInterval(updateDateTime, 1000);
         updateDateTime(); // เรียกใช้ฟังก์ชันครั้งแรกทันที
+    </script>
+    <script>
+        const canvas = document.getElementById('lightning-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function drawLightning() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.lineWidth = Math.random() * 5 + 2; // Random line width between 2 and 7
+
+            let startX = Math.random() * canvas.width;
+            let startY = 0;
+            let endX = Math.random() * canvas.width;
+            let endY = canvas.height;
+
+            if (Math.random() < 0.5) { // 50% chance to start from left/right edge
+                startX = Math.random() < 0.5 ? 0 : canvas.width;
+                startY = Math.random() * canvas.height;
+                endY = Math.random() * canvas.height;
+                if (startX === 0) {
+                    endX = canvas.width;
+                } else {
+                    endX = 0;
+                }
+            }
+
+
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+
+            let currentX = startX;
+            let currentY = startY;
+            const segments = 10 + Math.floor(Math.random() * 10); // 10 to 19 segments
+            const totalDistanceX = endX - startX;
+            const totalDistanceY = endY - startY;
+
+            for (let i = 0; i < segments; i++) {
+                let nextX, nextY;
+                if (i === segments - 1) { // Ensure the last segment reaches the end point
+                    nextX = endX;
+                    nextY = endY;
+                } else {
+                    // Intermediate points
+                    const progress = (i + 1) / segments;
+                    nextX = startX + totalDistanceX * progress + (Math.random() - 0.5) * 50; // Random offset
+                    nextY = startY + totalDistanceY * progress + (Math.random() - 0.5) * 20; // Y is more constrained
+                }
+                ctx.lineTo(nextX, nextY);
+
+                // Add branches
+                if (Math.random() < 0.3 && i < segments -1) { // 30% chance to branch, not on the last segment
+                    const branchStartX = currentX;
+                    const branchStartY = currentY;
+                    const branchEndX = currentX + (Math.random() - 0.5) * 100;
+                    const branchEndY = currentY + Math.random() * 50 + 20; // Branches tend to go downwards
+
+                    ctx.moveTo(branchStartX, branchStartY);
+                    ctx.lineTo(branchEndX, branchEndY);
+                    ctx.moveTo(nextX, nextY); // Move back to the main bolt's next point
+                }
+                currentX = nextX;
+                currentY = nextY;
+            }
+            ctx.stroke();
+        }
+
+        function animateLightning() {
+            drawLightning();
+            setTimeout(() => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }, Math.random() * 100 + 100); // Bolt visible for 100-200ms
+
+            setTimeout(animateLightning, Math.random() * 8000 + 2000); // Next strike in 2-10 seconds
+        }
+
+        animateLightning();
+
+        // Resize canvas when window size changes
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
