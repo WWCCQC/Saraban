@@ -7,16 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        #lightning-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -224,10 +214,83 @@
             font-size: 20px;
             color: blue;
         }
+
+        .fiber {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .fiber-line {
+            position: absolute;
+            width: 2px;
+            height: 150px;
+            background: linear-gradient(to bottom, 
+                        transparent 0%, 
+                        rgba(255, 255, 255, 0.1) 20%, 
+                        rgba(255, 255, 255, 0.8) 80%, 
+                        rgba(255, 255, 255, 1) 100%);
+            border-radius: 1px;
+            animation: fiberMove 6s linear infinite;
+            transform-origin: bottom center;
+        }
+
+        .fiber-line::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .fiber-line:nth-child(1) { animation-delay: 0s; }
+        .fiber-line:nth-child(2) { animation-delay: -0.8s; }
+        .fiber-line:nth-child(3) { animation-delay: -1.6s; }
+        .fiber-line:nth-child(4) { animation-delay: -2.4s; }
+        .fiber-line:nth-child(5) { animation-delay: -3.2s; }
+        .fiber-line:nth-child(6) { animation-delay: -4s; }
+        .fiber-line:nth-child(7) { animation-delay: -4.8s; }
+        .fiber-line:nth-child(8) { animation-delay: -5.6s; }
+
+        @keyframes fiberMove {
+            0% { 
+                transform: translate(-20vw, 120vh) rotate(45deg);
+                opacity: 0;
+            }
+            15% { 
+                opacity: 0.5;
+            }
+            50% { 
+                opacity: 1;
+            }
+            85% { 
+                opacity: 0.5;
+            }
+            100% { 
+                transform: translate(120vw, -20vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <canvas id="lightning-canvas"></canvas>
+    <div class="fiber">
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+        <div class="fiber-line"></div>
+    </div>
     <nav>
         <h1>เมนูการใช้งาน</h1>
         <ul class="nav-menu">
@@ -281,90 +344,6 @@
         // อัปเดตวันที่และเวลาแบบเรียลไทม์ทุกวินาที
         setInterval(updateDateTime, 1000);
         updateDateTime(); // เรียกใช้ฟังก์ชันครั้งแรกทันที
-    </script>
-    <script>
-        const canvas = document.getElementById('lightning-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        function drawLightning() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.lineWidth = Math.random() * 5 + 2; // Random line width between 2 and 7
-
-            let startX = Math.random() * canvas.width;
-            let startY = 0;
-            let endX = Math.random() * canvas.width;
-            let endY = canvas.height;
-
-            if (Math.random() < 0.5) { // 50% chance to start from left/right edge
-                startX = Math.random() < 0.5 ? 0 : canvas.width;
-                startY = Math.random() * canvas.height;
-                endY = Math.random() * canvas.height;
-                if (startX === 0) {
-                    endX = canvas.width;
-                } else {
-                    endX = 0;
-                }
-            }
-
-
-            ctx.beginPath();
-            ctx.moveTo(startX, startY);
-
-            let currentX = startX;
-            let currentY = startY;
-            const segments = 10 + Math.floor(Math.random() * 10); // 10 to 19 segments
-            const totalDistanceX = endX - startX;
-            const totalDistanceY = endY - startY;
-
-            for (let i = 0; i < segments; i++) {
-                let nextX, nextY;
-                if (i === segments - 1) { // Ensure the last segment reaches the end point
-                    nextX = endX;
-                    nextY = endY;
-                } else {
-                    // Intermediate points
-                    const progress = (i + 1) / segments;
-                    nextX = startX + totalDistanceX * progress + (Math.random() - 0.5) * 50; // Random offset
-                    nextY = startY + totalDistanceY * progress + (Math.random() - 0.5) * 20; // Y is more constrained
-                }
-                ctx.lineTo(nextX, nextY);
-
-                // Add branches
-                if (Math.random() < 0.3 && i < segments -1) { // 30% chance to branch, not on the last segment
-                    const branchStartX = currentX;
-                    const branchStartY = currentY;
-                    const branchEndX = currentX + (Math.random() - 0.5) * 100;
-                    const branchEndY = currentY + Math.random() * 50 + 20; // Branches tend to go downwards
-
-                    ctx.moveTo(branchStartX, branchStartY);
-                    ctx.lineTo(branchEndX, branchEndY);
-                    ctx.moveTo(nextX, nextY); // Move back to the main bolt's next point
-                }
-                currentX = nextX;
-                currentY = nextY;
-            }
-            ctx.stroke();
-        }
-
-        function animateLightning() {
-            drawLightning();
-            setTimeout(() => {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }, Math.random() * 100 + 100); // Bolt visible for 100-200ms
-
-            setTimeout(animateLightning, Math.random() * 8000 + 2000); // Next strike in 2-10 seconds
-        }
-
-        animateLightning();
-
-        // Resize canvas when window size changes
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
     </script>
 </body>
 </html>
